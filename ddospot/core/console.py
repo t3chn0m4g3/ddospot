@@ -8,12 +8,12 @@ import threading
 try:
     import colorama
 except ImportError:
-    exit('Please install colorama for colorful console output: pip install colorama')
+    sys.exit('Please install colorama for colorful console output: pip install colorama')
 
 try:
     import tabulate
 except ImportError:
-    exit('Tabulate module is needed for interactive console: "pip install tabulate"')
+    sys.exit('Tabulate module is needed for interactive console: "pip install tabulate"')
 
 
 import core.potloader as potloader

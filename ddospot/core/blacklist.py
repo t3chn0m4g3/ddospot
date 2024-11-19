@@ -4,11 +4,12 @@ import datetime
 import logging
 import threading
 import time
+import sys
 
 try:
     import schedule
 except ImportError:
-    exit(
+    sys.exit(
         'Disable blacklists in configuration file or install schedule module '
         'to enable blacklist creation: "pip install git+https://github.com/dbader/schedule.git"')
 

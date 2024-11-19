@@ -4,11 +4,12 @@ import logging
 import logging.handlers
 import queue
 import threading
+import sys
 
 try:
     import hpfeeds
 except ImportError:
-    exit('Please install hpfeeds: "pip install hpfeeds"')
+    sys.exit('Please install hpfeeds: "pip install hpfeeds"')
 
 from . import spf
 from . import utils
