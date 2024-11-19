@@ -35,23 +35,28 @@ class DDoSPot(cmd.Cmd):
         # it is thus safe to init colorama here
         colorama.init(autoreset=True)
         self._read_config()
-        self.prompt = colorama.Fore.GREEN + 'ddp > '
-        self.doc_header = 'Available commands (use help <command> for detailed help):'
-        self.intro = colorama.Fore.YELLOW + '''
+        self.prompt = f"{colorama.Fore.GREEN}ddp > "
+        self.doc_header = "Available commands (use help <command> for detailed help):"
+        self.intro = (
+            f"{colorama.Fore.YELLOW}"
+            f"""
   ___  ___      ___ ___     _
  |   \\|   \\ ___/ __| _ \\___| |_
  | |) | |) / _ \\__ \\  _/ _ \\  _|
  |___/|___/\\___/___/_| \\___/\\__|
 
-                v%s
-''' % (version) + colorama.Style.RESET_ALL + '''
-
+                v{version}
+""" 
+        f"{colorama.Style.RESET_ALL}" 
+        """
 
  [+] List enabled honeypots using "list"
  [+] Start honeypot(s) using "start <honeypot>" or "start all"
  [+] Use "help" to list all available commands
 
-'''
+"""
+    )
+
 
     def cmdloop(self, intro=None):
         # avoid exiting the shell with CTRL-C
