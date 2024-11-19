@@ -13,7 +13,7 @@ try:
     from twisted.names import dns
     from twisted.names import client, server
 except ImportError as e:
-    exit(
+    sys.exit(
         'Twisted requirement is missing. '
         'Please install it with "pip install twisted". Error: %s' % e
         )
