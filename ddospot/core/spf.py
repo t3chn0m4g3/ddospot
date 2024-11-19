@@ -3,7 +3,7 @@
 import ast
 import os
 import sys
-import imp
+import importlib as imp
 
 from . import utils
 
