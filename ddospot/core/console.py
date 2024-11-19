@@ -29,34 +29,29 @@ class DDoSPot(cmd.Cmd):
     pots = []
     pot_names = []
 
-def __init__(self, version):
-    cmd.Cmd.__init__(self)
-    # DDoSPot "constructor" will always be called (both in interactive and non-interactive mode)
-    # it is thus safe to init colorama here
-    colorama.init(autoreset=True)
-    self._read_config()
-    self.prompt = f"{colorama.Fore.GREEN}ddp > "
-    self.doc_header = "Available commands (use help <command> for detailed help):"
-    self.intro = (
-        f"{colorama.Fore.YELLOW}"
-        f"""
+    def __init__(self, version):
+        cmd.Cmd.__init__(self)
+        # DDoSPot "constructor" will always be called (both in interactive and non-interactive mode)
+        # it is thus safe to init colorama here
+        colorama.init(autoreset=True)
+        self._read_config()
+        self.prompt = colorama.Fore.GREEN + 'ddp > '
+        self.doc_header = 'Available commands (use help <command> for detailed help):'
+        self.intro = colorama.Fore.YELLOW + r'''
   ___  ___      ___ ___     _
- |   \\|   \\ ___/ __| _ \\___| |_
- | |) | |) / _ \\__ \\  _/ _ \\  _|
- |___/|___/\\___/___/_| \\___/\\__|
+ |   \|   \ ___/ __| _ \___| |_
+ | |) | |) / _ \__ \  _/ _ \  _|
+ |___/|___/\___/___/_| \___/\__|
 
-                v{version}
-""" 
-        f"{colorama.Style.RESET_ALL}" 
-        """
+                v%s
+''' % (version) + colorama.Style.RESET_ALL + '''
+
 
  [+] List enabled honeypots using "list"
  [+] Start honeypot(s) using "start <honeypot>" or "start all"
  [+] Use "help" to list all available commands
 
-"""
-    )
-
+'''
 
     def cmdloop(self, intro=None):
         # avoid exiting the shell with CTRL-C
