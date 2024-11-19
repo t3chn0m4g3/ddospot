@@ -37,7 +37,7 @@ class DDoSPot(cmd.Cmd):
         self._read_config()
         self.prompt = colorama.Fore.GREEN + 'ddp > '
         self.doc_header = 'Available commands (use help <command> for detailed help):'
-        self.intro = colorama.Fore.YELLOW + '''
+        self.intro = colorama.Fore.YELLOW + r'''
   ___  ___      ___ ___     _
  |   \|   \ ___/ __| _ \___| |_
  | |) | |) / _ \__ \  _/ _ \  _|
