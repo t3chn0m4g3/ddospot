@@ -35,11 +35,11 @@ class DDoSPot(cmd.Cmd):
         # it is thus safe to init colorama here
         colorama.init(autoreset=True)
         self._read_config()
-        self.prompt = f"{colorama.Fore.GREEN}ddp > "
-        self.doc_header = "Available commands (use help <command> for detailed help):"
-        self.intro = (
-            f"{colorama.Fore.YELLOW}"
-            f"""
+        self.prompt = colorama.Fore.GREEN + 'ddp > '
+        self.doc_header = 'Available commands (use help <command> for detailed help):'
+    self.intro = (
+        f"{colorama.Fore.YELLOW}"
+        f"""
   ___  ___      ___ ___     _
  |   \\|   \\ ___/ __| _ \\___| |_
  | |) | |) / _ \\__ \\  _/ _ \\  _|
@@ -57,19 +57,14 @@ class DDoSPot(cmd.Cmd):
 """
     )
 
-
     def cmdloop(self, intro=None):
-        # Set intro if not explicitly provided
-        if intro is None:
-            intro = self.intro
+        # avoid exiting the shell with CTRL-C
+        # enter another cmdloop instance instead
         try:
-            super().cmdloop(intro=intro)
+            cmd.Cmd.cmdloop(self)
         except KeyboardInterrupt:
-            # Clear intro on restart to avoid re-displaying
-            print("\nCTRL-C pressed. Press again to exit.")
-            self.cmdloop(intro='')
-
-
+            self.intro = ' '
+            self.cmdloop()
 
     def do_list(self, args):
         '''
