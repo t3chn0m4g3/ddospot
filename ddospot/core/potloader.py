@@ -243,9 +243,6 @@ class PotLoader(object, metaclass=spf.MountPoint):
 
         self.logger = logging.getLogger(name)
         handler = logging.handlers.RotatingFileHandler(logfile, maxBytes=rotate_size, backupCount=keep_backup_log_count)
-        handler.setFormatter(logging.Formatter(
-            '%(asctime)s - %(name)-5s - %(levelname)-7s - %(message)s',
-            '%Y-%m-%d %H:%M:%S'))
         self.logger.addHandler(handler)
         self.logger.setLevel(logging.DEBUG)
 
