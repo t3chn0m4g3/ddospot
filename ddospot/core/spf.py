@@ -3,7 +3,7 @@
 import ast
 import os
 import sys
-import importlib as imp
+import importlib.util
 
 from . import utils
 
@@ -85,25 +85,26 @@ def load_plugins(**kwargs):
             names = (kwargs[key],)
     if names is None:
         names = list_plugins()
+
     loaded_plugins = {}
     for addon in names:
         if addon in ignored_plugins:
-            utils.print_warn('Plugin %s not loaded because it is disabled' % (addon))
+            utils.print_warn(f"Plugin {addon} not loaded because it is disabled")
             continue
         if addon in loaded_plugins:
-            utils.print_warn('Plugin %s not reloaded because it has already been loaded' % (addon))
+            utils.print_warn(f"Plugin {addon} not reloaded because it has already been loaded")
             continue
         try:
-            file = None
-            file, path, description = imp.find_module(addon, [PLUGIN_DIRECTORY])
-            module = imp.load_module(addon, file, path, description)
+            module_path = os.path.join(PLUGIN_DIRECTORY, addon, '__init__.py')
+            spec = importlib.util.spec_from_file_location(addon, module_path)
+            if spec is None:
+                raise ImportError(f"Cannot find spec for module {addon}")
+            module = importlib.util.module_from_spec(spec)
+            sys.modules[addon] = module
+            spec.loader.exec_module(module)
             loaded_plugins[addon] = module
-        except:
-            # not a big deal, but file may have been opened by find_module
-            if file is not None:
-                file.close()
-                # and printing the stack can help understand what happened
-            utils.print_warn('Plugin %s not loaded properly - %s' % (addon, sys.exc_info()[1]))
+        except Exception as e:
+            utils.print_warn(f"Plugin {addon} not loaded properly - {e}")
 
     return loaded_plugins
 

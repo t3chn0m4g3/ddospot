@@ -296,7 +296,7 @@ class DNSServerFactory(server.DNSServerFactory):
         raw_json = json.dumps(data)
 
         if not last:
-            self.logger.info('New DNS query - %s' % (raw_json))
+            self.logger.info(raw_json)
             db_params = {
                         'ip': data['src_ip'],
                         'port': data['src_port'],
