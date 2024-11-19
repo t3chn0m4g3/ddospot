@@ -59,14 +59,15 @@ class DDoSPot(cmd.Cmd):
 
 
     def cmdloop(self, intro=None):
-        # avoid exiting the shell with CTRL-C
-        # enter another cmdloop instance instead
+        # Use the intro defined in the object if not provided
+        if intro is None:
+            intro = self.intro
         try:
-            self.intro
-            cmd.Cmd.cmdloop(self)
+            super().cmdloop(intro=intro)
         except KeyboardInterrupt:
             self.intro = ' '
             self.cmdloop()
+
 
     def do_list(self, args):
         '''
