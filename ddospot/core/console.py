@@ -62,6 +62,7 @@ class DDoSPot(cmd.Cmd):
         # avoid exiting the shell with CTRL-C
         # enter another cmdloop instance instead
         try:
+            self.intro
             cmd.Cmd.cmdloop(self)
         except KeyboardInterrupt:
             self.intro = ' '
