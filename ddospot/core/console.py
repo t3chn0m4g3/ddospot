@@ -29,14 +29,14 @@ class DDoSPot(cmd.Cmd):
     pots = []
     pot_names = []
 
-    def __init__(self, version):
-        cmd.Cmd.__init__(self)
-        # DDoSPot "constructor" will always be called (both in interactive and non-interactive mode)
-        # it is thus safe to init colorama here
-        colorama.init(autoreset=True)
-        self._read_config()
-        self.prompt = colorama.Fore.GREEN + 'ddp > '
-        self.doc_header = 'Available commands (use help <command> for detailed help):'
+def __init__(self, version):
+    cmd.Cmd.__init__(self)
+    # DDoSPot "constructor" will always be called (both in interactive and non-interactive mode)
+    # it is thus safe to init colorama here
+    colorama.init(autoreset=True)
+    self._read_config()
+    self.prompt = f"{colorama.Fore.GREEN}ddp > "
+    self.doc_header = "Available commands (use help <command> for detailed help):"
     self.intro = (
         f"{colorama.Fore.YELLOW}"
         f"""
@@ -56,6 +56,7 @@ class DDoSPot(cmd.Cmd):
 
 """
     )
+
 
     def cmdloop(self, intro=None):
         # avoid exiting the shell with CTRL-C
