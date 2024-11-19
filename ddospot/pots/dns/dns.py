@@ -13,7 +13,7 @@ try:
     from twisted.names import dns
     from twisted.names import client, server
 except ImportError as e:
-    exit(
+    sys.exit(
         'Twisted requirement is missing. '
         'Please install it with "pip install twisted". Error: %s' % e
         )
@@ -296,7 +296,7 @@ class DNSServerFactory(server.DNSServerFactory):
         raw_json = json.dumps(data)
 
         if not last:
-            self.logger.info('New DNS query - %s' % (raw_json))
+            self.logger.info(raw_json)
             db_params = {
                         'ip': data['src_ip'],
                         'port': data['src_port'],

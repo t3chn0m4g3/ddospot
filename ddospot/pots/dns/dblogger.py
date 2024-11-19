@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import datetime
+import sys
 
 try:
     from sqlalchemy.ext.declarative import declarative_base
@@ -8,7 +9,7 @@ try:
     from sqlalchemy.orm import relationship
     from sqlalchemy import func, distinct, desc
 except ImportError as e:
-    exit(
+    sys.exit(
         'SQLAlchemy requirement is missing. '
         'Please install it with "pip install SQLAlchemy". Error: %s' % e
         )

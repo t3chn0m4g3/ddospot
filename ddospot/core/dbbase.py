@@ -5,13 +5,14 @@ import datetime
 import logging
 import queue
 import threading
+import sys
 
 try:
     from sqlalchemy.exc import SQLAlchemyError
     from sqlalchemy.orm import sessionmaker
     from sqlalchemy import create_engine, func, desc
 except ImportError as e:
-    exit(
+    sys.exit(
         'SQLAlchemy requirement is missing. '
         'Please install it with "pip install SQLAlchemy". Error: %s' % e
         )

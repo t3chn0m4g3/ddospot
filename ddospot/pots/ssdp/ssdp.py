@@ -197,7 +197,7 @@ class SSDPServer(socketserver.BaseRequestHandler):
 
         raw_json = json.dumps(data)
 
-        self.logger.info('%s - %s' % (msg, raw_json))
+        self.logger.info(raw_json)
 
         if not last:
             db_params = {

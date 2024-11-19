@@ -8,12 +8,12 @@ import threading
 try:
     import colorama
 except ImportError:
-    exit('Please install colorama for colorful console output: pip install colorama')
+    sys.exit('Please install colorama for colorful console output: pip install colorama')
 
 try:
     import tabulate
 except ImportError:
-    exit('Tabulate module is needed for interactive console: "pip install tabulate"')
+    sys.exit('Tabulate module is needed for interactive console: "pip install tabulate"')
 
 
 import core.potloader as potloader
@@ -37,7 +37,7 @@ class DDoSPot(cmd.Cmd):
         self._read_config()
         self.prompt = colorama.Fore.GREEN + 'ddp > '
         self.doc_header = 'Available commands (use help <command> for detailed help):'
-        self.intro = colorama.Fore.YELLOW + '''
+        self.intro = colorama.Fore.YELLOW + r'''
   ___  ___      ___ ___     _
  |   \|   \ ___/ __| _ \___| |_
  | |) | |) / _ \__ \  _/ _ \  _|

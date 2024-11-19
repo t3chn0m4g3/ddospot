@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
+import sys
+
 try:
     import colorama
 except ImportError:
-    exit('Please install colorama for colorful console output: pip install colorama')
+    sys.exit('Please install colorama for colorful console output: pip install colorama')
 
 
 def print_err(msg):
