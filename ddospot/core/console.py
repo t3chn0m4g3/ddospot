@@ -37,11 +37,11 @@ class DDoSPot(cmd.Cmd):
         self._read_config()
         self.prompt = colorama.Fore.GREEN + 'ddp > '
         self.doc_header = 'Available commands (use help <command> for detailed help):'
-        self.intro = colorama.Fore.YELLOW + r'''
+        self.intro = colorama.Fore.YELLOW + '''
   ___  ___      ___ ___     _
- |   \|   \ ___/ __| _ \___| |_
- | |) | |) / _ \__ \  _/ _ \  _|
- |___/|___/\___/___/_| \___/\__|
+ |   \\|   \\ ___/ __| _ \\___| |_
+ | |) | |) / _ \\__ \\  _/ _ \\  _|
+ |___/|___/\\___/___/_| \\___/\\__|
 
                 v%s
 ''' % (version) + colorama.Style.RESET_ALL + '''
